@@ -2,10 +2,13 @@
 
 **Here is what the technology enables on a 10-year-old laptop**
 
-This isn't futuristic technology reserved for governments or huge technology companies. Many of the building blocks required for sophisticated camera-based observation are already accessible to individuals with relatively modest hardware and an internet connection. This project demonstrates how ANY ordinary camera can be turned into an invasive observation tool. Adding a local LLM to the pipeline can exponentially increase the depth and versatility of the data extracted from each frame.
+This isn't futuristic technology reserved for governments or huge technology companies. Many of the building blocks required for sophisticated camera-based observation are already accessible to individuals with relatively modest hardware and an internet connection. This project demonstrates how **ANY ordinary camera can be turned into an invasive observation tool**. Adding a local LLM to the pipeline can exponentially increase the depth and versatility of the data extracted from each frame.
 
-The purpose isn't to demonize these technologies, but to make their capabilities some what tangible. By demonstrating what can be observed, recorded the project explores the increasingly important boundary between legitimate security applications and individual privacy.
+The purpose isn't to demonize these technologies, but to make their capabilities somewhat tangible. By demonstrating what can be observed and recorded, the project explores the increasingly important boundary between legitimate security applications and individual privacy.
 
+*Now consider what becomes possible with hardware and resources far beyond a single 10-year-old dying laptop. Governments and institutions possess computing power that far exceeds mine. They have dedicated teams, vast resources, extensive camera networks, and access to a vast array of data pools. So, what's actually possible when surveillance software and hardware are built on a national scale?*
+
+*Just imagine the capabilities of technocratic governments with billions to spend on hardware and developers, not to mention all the data in the world at their fingertips.*
 
 # Overview
 
