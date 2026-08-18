@@ -1,10 +1,8 @@
 # Arasaka
 
+This isn't some futuristic technology reserved for governments or huge tech conglomerates. The building blocks are accessible to anyone with an internet connection. 
 
-
-
-
-
+This project demonstrates how ANY ordinary camera can be turned into an invasive observation tool. Adding a local LLM to the pipeline can exponentially increase the depth and versatility of the data extracted from each frame.
 
 # Overview
 
