@@ -23,6 +23,8 @@ Governments and institutions possess computing power that far exceeds mine. They
 > **Arasaka could be extended to track individuals between cameras and construct a map of their observed movements over time.**
 >
 > **It's genuinely scary, especially considering the free software available and the dying hardware I'm running it on.**
+>
+> **Why does continuously recording and analyzing someone's behavior stop feeling like stalking when we call it a security system**
 
 
 
