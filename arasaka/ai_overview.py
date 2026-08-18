@@ -1,40 +1,43 @@
 import asyncio
-import base64
-
-import aiohttp
 import cv2
+import ollama
 
 
 # ============================================================
 # OLLAMA CONFIG
 # ============================================================
 
-OLLAMA_URL = "http://127.0.0.1:11434/api/generate"
-OLLAMA_MODEL = "moondream"
-
-OLLAMA_TIMEOUT = aiohttp.ClientTimeout(
-    total=180,
-    connect=10,
-)
+OLLAMA_MODEL = "qwen3-vl:2b"
 
 
 # ============================================================
-# IMAGE ENCODING
+# ASYNC AI OVERVIEW
 # ============================================================
 
-def _encode_face_to_b64(face_crop):
+async def generate_ai_overview(
+    face_crop,
+):
     """
-    Convert an OpenCV BGR image into JPEG -> base64.
+    Generate an AI description of a face image using Ollama.
+
+    Ollama's Python library handles the connection and image
+    encoding internally.
     """
 
     if face_crop is None:
-        return None
+        return "No face image available."
 
     if face_crop.size == 0:
-        return None
+        return "No face image available."
+
+    # --------------------------------------------------------
+    # Encode OpenCV image to JPEG bytes
+    # --------------------------------------------------------
 
     try:
-        success, buffer = cv2.imencode(
+
+        success, buffer = await asyncio.to_thread(
+            cv2.imencode,
             ".jpg",
             face_crop,
             [
@@ -44,114 +47,41 @@ def _encode_face_to_b64(face_crop):
         )
 
         if not success:
-            return None
+            return "Could not encode face image."
 
-        return base64.b64encode(
-            buffer.tobytes()
-        ).decode("utf-8")
+        image_bytes = buffer.tobytes()
 
     except Exception as e:
-        print(f"Image encoding error: {e}")
-        return None
 
+        print(f"[AI] Image encoding error: {e}")
 
-# ============================================================
-# ASYNC AI OVERVIEW
-# ============================================================
-
-async def generate_ai_overview(
-    face_crop,
-    session=None,
-):
-    """
-    Generate an AI description of a face image using Ollama.
-
-    This function is intentionally async so it doesn't freeze
-    the DearPyGui interface while Ollama is processing.
-    """
-
-    if face_crop is None:
-        return "No face image available."
-
-    if face_crop.size == 0:
-        return "No face image available."
-
-    # --------------------------------------------------------
-    # Encode image
-    # --------------------------------------------------------
-
-    image_b64 = await asyncio.to_thread(
-        _encode_face_to_b64,
-        face_crop,
-    )
-
-    if image_b64 is None:
-        return "Could not encode face image."
+        return f"Image encoding error: {e}"
 
     # --------------------------------------------------------
     # Prompt
     # --------------------------------------------------------
 
     prompt = """
-You are analyzing a surveillance camera image.
+Describe the face precisely using only visible features.
 
-Describe ONLY visible, non-sensitive information.
+Include:
+- face/head shape
+- skin tone and texture
+- eyes: shape, size, spacing, gaze
+- eyebrows: shape and thickness
+- nose: size and shape
+- lips/mouth: shape and thickness
+- cheeks, jawline, and chin
+- hair and facial hair
+- head direction
+- race
 
-Mention things such as:
-- clothing
-- colours
-- accessories
-- visible objects
-- pose
-- general facial expression if clearly visible
-- image quality
-- lighting
-- whether the face is partially obscured
-
-Do NOT:
-- identify the person
-- guess their identity
-- infer age
-- infer ethnicity
-- infer race
-- infer religion
-- infer sexuality
-- infer medical conditions
-- infer criminal behaviour
-- make assumptions about things that cannot clearly be seen
-
-Keep the response concise, around 2-4 sentences.
-
-Describe what is actually visible in the image.
+Be objective and specific. Do not guess. If something is unclear, say "not visible".
 """
 
-    payload = {
-        "model": OLLAMA_MODEL,
-
-        "prompt": prompt,
-
-        "images": [
-            image_b64
-        ],
-
-        "stream": False,
-
-        "options": {
-            "temperature": 0.2,
-        },
-    }
-
     # --------------------------------------------------------
-    # Create/reuse HTTP session
+    # Send image to Ollama
     # --------------------------------------------------------
-
-    owns_session = False
-
-    if session is None:
-        session = aiohttp.ClientSession(
-            timeout=OLLAMA_TIMEOUT
-        )
-        owns_session = True
 
     try:
 
@@ -160,126 +90,57 @@ Describe what is actually visible in the image.
             f"using {OLLAMA_MODEL}..."
         )
 
-        async with session.post(
-            OLLAMA_URL,
-            json=payload,
-        ) as response:
+        response = await asyncio.to_thread(
+            ollama.chat,
+            model=OLLAMA_MODEL,
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt,
+                    "images": [
+                        image_bytes
+                    ],
+                }
+            ],
+            options={
+                "temperature": 0.2,
+            },
+        )
 
-            # ------------------------------------------------
-            # Read response body BEFORE raising an exception.
-            # This is important because Ollama's useful error
-            # message is otherwise hidden behind "500".
-            # ------------------------------------------------
+        # ----------------------------------------------------
+        # Extract response
+        # ----------------------------------------------------
 
-            response_text = await response.text()
+        result = response["message"]["content"]
 
-            if response.status != 200:
-
-                print(
-                    "\n================ OLLAMA ERROR ================"
-                )
-
-                print(
-                    f"HTTP status: {response.status}"
-                )
-
-                print(
-                    f"Response:\n{response_text}"
-                )
-
-                print(
-                    "==============================================\n"
-                )
-
-                return (
-                    f"AI error: Ollama returned "
-                    f"HTTP {response.status}: "
-                    f"{response_text}"
-                )
-
-            # ------------------------------------------------
-            # Parse JSON
-            # ------------------------------------------------
-
-            try:
-                data = await response.json()
-
-            except Exception as e:
-
-                print(
-                    f"[AI] Could not parse Ollama JSON: {e}"
-                )
-
-                print(
-                    f"[AI] Raw response: {response_text}"
-                )
-
-                return "AI error: invalid Ollama response."
-
-            # ------------------------------------------------
-            # Extract response
-            # ------------------------------------------------
-
-            result = data.get(
-                "response",
-                ""
-            )
-
-            if not result:
-
-                print(
-                    "[AI] Ollama returned no response."
-                )
-
-                print(
-                    f"[AI] Full response: {data}"
-                )
-
-                return "No AI overview was returned."
+        if not result:
 
             print(
-                "[AI] Overview generated successfully."
+                "[AI] Ollama returned no response."
             )
 
-            return result.strip()
-
-    except asyncio.TimeoutError:
+            return "No AI overview was returned."
 
         print(
-            "[AI] Ollama request timed out."
+            "[AI] Overview generated successfully."
         )
 
-        return (
-            "AI error: Ollama timed out "
-            "while generating the overview."
-        )
+        return result.strip()
 
-    except aiohttp.ClientConnectionError as e:
-
-        print(
-            f"[AI] Could not connect to Ollama: {e}"
-        )
-
-        return (
-            "AI error: Could not connect to Ollama. "
-            "Make sure Ollama is running."
-        )
+    # --------------------------------------------------------
+    # Error handling
+    # --------------------------------------------------------
 
     except Exception as e:
 
         print(
-            f"[AI] Unexpected Ollama error: {type(e).__name__}: {e}"
+            f"[AI] Ollama error: "
+            f"{type(e).__name__}: {e}"
         )
 
         return (
             f"AI error: {type(e).__name__}: {e}"
         )
-
-    finally:
-
-        if owns_session:
-
-            await session.close()
 
 
 # ============================================================
@@ -290,12 +151,10 @@ def generate_ai_overview_sync(face_crop):
     """
     Synchronous wrapper.
 
-    Useful because your DearPyGui callbacks are normal
-    synchronous Python functions.
+    Useful for normal Python callbacks.
 
-    IMPORTANT:
-    Do NOT call this directly from the render loop if you
-    want the UI to remain responsive.
+    Do NOT call this inside a high-frequency render loop,
+    because Ollama inference can take some time.
     """
 
     return asyncio.run(
@@ -312,25 +171,18 @@ async def generate_ai_overviews_batch(
 ):
     """
     Generate AI descriptions for multiple images.
-
-    One Ollama connection is shared.
     """
 
     if not face_crops:
         return []
 
-    async with aiohttp.ClientSession(
-        timeout=OLLAMA_TIMEOUT
-    ) as session:
-
-        tasks = [
-            generate_ai_overview(
-                crop,
-                session=session,
-            )
-            for crop in face_crops
-        ]
-
-        return await asyncio.gather(
-            *tasks
+    tasks = [
+        generate_ai_overview(
+            crop
         )
+        for crop in face_crops
+    ]
+
+    return await asyncio.gather(
+        *tasks
+    )
