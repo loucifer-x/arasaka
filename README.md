@@ -29,9 +29,9 @@ The purpose isn't to demonize these technologies, but to make their capabilities
 # Questions
 
 > **Could an attacker exploit the way an LLM interprets encoded data, such as Base64, when that data is captured by a camera?**
-
+>
 > **What could happen if this kind of technology falls into the wrong hands?**
-
+>
 > **What are the societal consequences of this technology?**
 >
 > **So, what's actually possible when surveillance software and hardware are built on a national scale?**
