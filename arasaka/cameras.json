@@ -1,0 +1,16 @@
+{
+  "camera": {
+    "1": {
+      "camera_url": "http://192.168.0.41:8000/stream",
+      "name": "Camera 1",
+      "location": "",
+      "status": "online"
+    },
+    "2": {
+      "camera_url": "http://192.168.0.218:5000/video_feed",
+      "name": "Camera 2",
+      "location": "",
+      "status": "online"
+    }
+  }
+}
