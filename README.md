@@ -17,9 +17,19 @@ Arasaka is a real-time computer vision surveillance system that detects and prof
 > Face detection, recognition, profiling, and watchlist matching continue to work normally.
 > 
 
+## Screenshots
 
-<img src="images/4.png" alt="Arasaka" width="800">
+### Live View
+![Live View](images/1.png)
 
+### Profiles
+![Profiles](images/2.png)
+
+### Watchlist
+![Watchlist](images/3.png)
+
+### Camera Manager
+![Camera Manager](images/4.png)
 
 ### Requirements 
 
