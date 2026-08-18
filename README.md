@@ -1,19 +1,44 @@
 # Arasaka
 
-**Here is what the technology enables on a 10-year-old laptop**
+> **Here is what the technology enables on a 10-year-old laptop.**
 
-This isn't futuristic technology reserved for governments or huge technology companies. Many of the building blocks required for sophisticated camera-based observation are already accessible to individuals with relatively modest hardware and an internet connection. This project demonstrates how **ANY ordinary camera can be turned into an invasive observation tool**. Adding a local LLM to the pipeline can exponentially increase the depth and versatility of the data extracted from each frame.
+## The Idea
+
+This isn't futuristic technology reserved for governments or huge technology companies. Many of the building blocks required for sophisticated camera-based observation are already accessible to individuals with relatively modest hardware and an internet connection.
+
+This project demonstrates how **ANY ordinary camera can be turned into an invasive observation tool**. Adding a local LLM to the pipeline can exponentially increase the depth and versatility of the data extracted from each frame.
 
 The purpose isn't to demonize these technologies, but to make their capabilities somewhat tangible. By demonstrating what can be observed and recorded, the project explores the increasingly important boundary between legitimate security applications and individual privacy.
 
-*Now consider what becomes possible with hardware and resources far beyond a single 10-year-old dying laptop. Governments and institutions possess computing power that far exceeds mine. They have dedicated teams, vast resources, extensive camera networks, and access to a vast array of data pools. So, what's actually possible when surveillance software and hardware are built on a national scale?*
+> *Now consider what becomes possible with hardware and resources far beyond a single 10-year-old dying laptop.*
 
-*Just imagine the capabilities of technocratic governments with billions to spend on hardware and developers, not to mention all the data in the world at their fingertips.*
+Governments and institutions possess computing power that far exceeds mine. They have dedicated teams, vast resources, extensive camera networks, and access to a vast array of data pools.
+
+**So, what's actually possible when surveillance software and hardware are built on a national scale?**
+
+> *Just imagine the capabilities of technocratic governments with billions to spend on hardware and developers, not to mention all the data in the world at their fingertips.*
+
+---
 
 # Overview
 
-Arasaka is a real-time computer vision surveillance system that detects and profiles faces from live camera streams. It uses facial recognition to group recurring faces into profiles and can compare them against a configurable watchlist. The system provides a Dear PyGui dashboard for live monitoring, profile management, camera configuration, and watchlist alerts.
+**Arasaka** is a real-time computer vision surveillance system designed to demonstrate the capabilities and implications of modern camera-based observation.
 
+It can:
+
+* **Detect faces** from live camera streams.
+* **Recognize recurring faces** and group observations into individual profiles.
+* **Build persistent profiles** from repeated observations.
+* **Compare detected individuals** against a configurable watchlist.
+* **Generate watchlist alerts** when a match is detected.
+* **Monitor multiple camera sources** through a centralized interface.
+* **Manage profiles and camera configurations** through a Dear PyGui dashboard.
+
+The system is intentionally designed as a demonstration of what can be achieved with relatively modest hardware and accessible software.
+
+The goal isn't to build the most powerful surveillance system possible.
+
+**The goal is to demonstrate what is already possible.**
 
 
 ![AI Status](https://img.shields.io/badge/AI%20OVERVIEW-DISABLED-red?style=for-the-badge)
