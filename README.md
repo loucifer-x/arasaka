@@ -4,11 +4,13 @@ This isn't futuristic technology reserved for governments or huge technology com
 
 The purpose isn't to demonize these technologies, but to make their capabilities some what tangible. By demonstrating what can be observed, recorded the project explores the increasingly important boundary between legitimate security applications and individual privacy.
 
+**Here is what the technology enables on a 10-year-old laptop**
+
 # Overview
 
 Arasaka is a real-time computer vision surveillance system that detects and profiles faces from live camera streams. It uses facial recognition to group recurring faces into profiles and can compare them against a configurable watchlist. The system provides a Dear PyGui dashboard for live monitoring, profile management, camera configuration, and watchlist alerts.
 
-**Here is what the technology enables on a 10-year-old laptop.**
+
 
 ![AI Status](https://img.shields.io/badge/AI%20OVERVIEW-DISABLED-red?style=for-the-badge)
 
