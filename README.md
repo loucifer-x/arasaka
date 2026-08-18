@@ -32,7 +32,7 @@ Governments and institutions possess computing power that far exceeds mine. They
 
 > **What could happen if this kind of technology falls into the wrong hands?**
 
-> **What are the positive societal consequences of this technology?**
+> **What are the societal consequences of this technology?**
 
 
 ---
