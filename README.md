@@ -18,6 +18,17 @@ Governments and institutions possess computing power that far exceeds mine. They
 
 > *Just imagine the capabilities of technocratic governments with billions to spend on hardware and developers, not to mention all the data in the world at their fingertips.*
 
+# Questions
+
+> **Could an attacker exploit the way an LLM interprets encoded data, such as Base64, when that data is captured by a camera?**
+
+> **Is it safe and acceptable to leave this kind of technology in government hands?**
+
+> **What could happen if this kind of technology falls into the wrong hands?**
+
+> **What are the positive societal consequences of this technology?**
+
+
 ---
 
 # Overview
