@@ -2,7 +2,6 @@ import json
 import queue
 import threading
 import time
-from ai_overview import generate_ai_overview
 import asyncio
 import cv2
 import face_recognition
@@ -47,7 +46,7 @@ import json
 # └── json/
 #     └── cameras.json
 #
-from pathlib import Path
+
 
 BASE_DIR = Path(__file__).resolve().parent
 CAMERAS_PATH = BASE_DIR / "cameras.json"
@@ -276,13 +275,18 @@ PROFILE_GRID_COLUMNS = GRID_COLUMNS
 profiles = []  # list of dicts: {"encoding": np.ndarray, "hits": int}
 ai_result_queue = queue.Queue()
 def generate_profile_ai(profile_idx, face_crop):
-    """Generate the AI overview in the background."""
+    """Generate AI overview only when explicitly requested."""
 
-    print(f"[AI] Starting profile {profile_idx + 1}")
+    print(f"[AI] Starting analysis for profile {profile_idx + 1}")
 
     try:
-        result = asyncio.run(generate_ai_overview(face_crop))
-        print(f"[AI] Finished profile {profile_idx + 1}: {result}")
+        # Import only when the user actually requests AI analysis.
+        from ai_overview import generate_ai_overview
+
+        result = asyncio.run(
+            generate_ai_overview(face_crop)
+        )
+
     except Exception as e:
         result = f"AI error: {e}"
         print(f"[AI] ERROR: {e}")
@@ -343,15 +347,13 @@ def find_or_create_profile(face_data, face_crop, tolerance=PROFILE_MATCH_TOLERAN
             "hits": 1,
             "first_seen": time.time(),
             "last_seen": time.time(),
-            "ai_overview": "Generating AI overview...",
+            "last_crop": face_crop.copy(),
+
+            # AI is generated only when the profile is opened.
+            "ai_overview": None,
+            "ai_started": False,
         })
 
-        # Generate AI overview in the background so the GUI doesn't freeze.
-        threading.Thread(
-            target=generate_profile_ai,
-            args=(idx, face_crop.copy()),
-            daemon=True,
-        ).start()
 
         dpg.configure_item(f"profile_image_{idx}", show=True)
     # Check this profile against the watchlist database and surface it in
@@ -1374,13 +1376,12 @@ def show_profile(sender, app_data, user_data):
         "128 dimensions"
     )
 
-    dpg.set_value(
-        "profile_detail_ai",
-        profile.get("ai_overview") or "Not generated yet."
-    )
+    # --------------------------------------------------------
+    # SHOW CURRENT FACE
+    # --------------------------------------------------------
 
-    # Show the latest captured face
     if "last_crop" in profile and profile["last_crop"] is not None:
+
         dpg.set_value(
             "profile_detail_texture",
             _face_to_rgba_float(
@@ -1388,6 +1389,59 @@ def show_profile(sender, app_data, user_data):
                 PROFILE_THUMB_SIZE * 2
             )
         )
+
+    # --------------------------------------------------------
+    # AI ANALYSIS
+    # --------------------------------------------------------
+
+    if profile.get("ai_overview"):
+
+        # Already analyzed
+        dpg.set_value(
+            "profile_detail_ai",
+            profile["ai_overview"]
+        )
+
+    elif profile.get("ai_started"):
+
+        # Analysis is currently running
+        dpg.set_value(
+            "profile_detail_ai",
+            "Generating AI overview..."
+        )
+
+    else:
+
+        # Start AI analysis for the first time
+        profile["ai_started"] = True
+
+        dpg.set_value(
+            "profile_detail_ai",
+            "Generating AI overview..."
+        )
+
+        face_crop = profile.get("last_crop")
+
+        if face_crop is not None and face_crop.size > 0:
+
+            threading.Thread(
+                target=generate_profile_ai,
+                args=(idx, face_crop.copy()),
+                daemon=True,
+            ).start()
+
+        else:
+
+            profile["ai_started"] = False
+
+            dpg.set_value(
+                "profile_detail_ai",
+                "No face image available for AI analysis."
+            )
+
+    # --------------------------------------------------------
+    # SHOW WINDOW
+    # --------------------------------------------------------
 
     dpg.configure_item(
         "profile_detail_window",
@@ -1915,7 +1969,7 @@ dpg.set_primary_window("main_window", True)
 while dpg.is_dearpygui_running():
 
     update_camera()
-    #process_ai_results()
+    process_ai_results()
 
     dpg.render_dearpygui_frame()
 
