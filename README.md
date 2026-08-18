@@ -1,10 +1,11 @@
 # Arasaka
 
+**Here is what the technology enables on a 10-year-old laptop**
+
 This isn't futuristic technology reserved for governments or huge technology companies. Many of the building blocks required for sophisticated camera-based observation are already accessible to individuals with relatively modest hardware and an internet connection. This project demonstrates how ANY ordinary camera can be turned into an invasive observation tool. Adding a local LLM to the pipeline can exponentially increase the depth and versatility of the data extracted from each frame.
 
 The purpose isn't to demonize these technologies, but to make their capabilities some what tangible. By demonstrating what can be observed, recorded the project explores the increasingly important boundary between legitimate security applications and individual privacy.
 
-**Here is what the technology enables on a 10-year-old laptop**
 
 # Overview
 
