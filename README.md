@@ -10,9 +10,9 @@ This project demonstrates how **ANY ordinary camera can be turned into an invasi
 
 The purpose isn't to demonize these technologies, but to make their capabilities somewhat tangible. By demonstrating what can be observed and recorded, the project explores the increasingly important boundary between legitimate security applications and individual privacy.
 
-> *Now consider what becomes possible with hardware and resources far beyond a single 10-year-old dying laptop.*
+**Now consider what becomes possible with hardware and resources far beyond a single 10-year-old dying laptop.**
 
-Governments and institutions possess computing power that far exceeds mine. They have dedicated teams, vast resources, extensive camera networks, and access to a vast array of data pools.
+> Governments and institutions possess computing power that far exceeds mine. They have dedicated teams, vast resources, extensive camera networks, and access to a vast array of data pools.
 
 **So, what's actually possible when surveillance software and hardware are built on a national scale?**
 
