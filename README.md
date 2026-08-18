@@ -14,9 +14,6 @@ The purpose isn't to demonize these technologies, but to make their capabilities
 
 > Governments and institutions possess computing power that far exceeds mine. They have dedicated teams, vast resources, extensive camera networks, and access to a vast array of data pools.
 
-**So, what's actually possible when surveillance software and hardware are built on a national scale?**
-
-> *Just imagine the capabilities of technocratic governments with billions to spend on hardware and developers, not to mention all the data in the world at their fingertips.*
 
 # Thoughts
 
@@ -25,6 +22,7 @@ The purpose isn't to demonize these technologies, but to make their capabilities
 > **It's genuinely scary, especially considering the free software available and the dying hardware I'm running it on.**
 >
 > **Why does continuously recording and analyzing someone's behavior stop feeling like stalking when we call it a security system**
+> 
 
 
 
@@ -35,6 +33,8 @@ The purpose isn't to demonize these technologies, but to make their capabilities
 > **What could happen if this kind of technology falls into the wrong hands?**
 
 > **What are the societal consequences of this technology?**
+>
+> **So, what's actually possible when surveillance software and hardware are built on a national scale?**
 
 
 ---
