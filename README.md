@@ -20,9 +20,9 @@ Governments and institutions possess computing power that far exceeds mine. They
 
 # Thoughts
 
-> Arasaka could be extended to track individuals between cameras and construct a map of their observed movements over time.
+> **Arasaka could be extended to track individuals between cameras and construct a map of their observed movements over time.**
 >
-> It's genuinely scary, especially considering the free software available and the dying hardware I'm running it on.
+> **It's genuinely scary, especially considering the free software available and the dying hardware I'm running it on.**
 
 
 
