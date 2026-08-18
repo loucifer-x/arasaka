@@ -18,6 +18,8 @@ Arasaka is a real-time computer vision surveillance system that detects and prof
 > 
 
 
+<img src="images/4.png" alt="Arasaka" width="800">
+
 
 ### Requirements 
 
