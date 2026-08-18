@@ -1,79 +1,18 @@
-# arasaka-
-WORK IN PROGRESS
+# arasaka
 
 
 
 
 
 
-```
-                    ┌─────────────────┐
-                    │     Camera      │
-                    └────────┬────────┘
-                             │
-                             ▼
-                    ┌─────────────────┐
-                    │  Video Stream   │
-                    │ BlenderStream   │
-                    └────────┬────────┘
-                             │
-                             ▼
-                    ┌─────────────────┐
-                    │ Face Detection  │
-                    │ face_detector   │
-                    └────────┬────────┘
-                             │
-                             ▼
-                    ┌─────────────────┐
-                    │ Face Encoding   │
-                    │ face_recognition│
-                    └────────┬────────┘
-                             │
-                             ▼
-                 ┌─────────────────────────┐
-                 │   Profile Matching      │
-                 │                         │
-                 │ Existing face? ── Yes ──┤
-                 │        │                │
-                 │        No               │
-                 └─────────┬───────────────┘
-                           │
-             ┌─────────────┴─────────────┐
-             ▼                           ▼
-      ┌──────────────┐            ┌──────────────┐
-      │Update Profile│            │Create Profile│
-      │hits / image  │            │new embedding │
-      └──────┬───────┘            └──────┬───────┘
-             │                           │
-             └─────────────┬─────────────┘
-                           ▼
-                 ┌─────────────────────┐
-                 │   Watchlist Match   │
-                 └──────────┬──────────┘
-                            │
-                    ┌───────┴───────┐
-                    │               │
-                  Match           No Match
-                    │               │
-                    ▼               ▼
-             ┌────────────┐   ┌────────────┐
-             │    Ping    │   │   Normal   │
-             │   Alert    │   │  Profile   │
-             └─────┬──────┘   └────────────┘
-                   │
-                   ▼
-             ┌──────────────┐
-             │  AI Overview │
-             │   (Optional) │
-             │    Ollama    │
-             └──────┬───────┘
-                    │
-                    ▼
-             ┌──────────────┐
-             │  Dear PyGui  │
-             │     GUI      │
-             └──────────────┘
-```
+![AI Status](https://img.shields.io/badge/AI%20OVERVIEW-DISABLED-red?style=for-the-badge)
+
+> [!WARNING]
+> **AI Overview is currently disabled.**
+> Face detection, recognition, profiling, and watchlist matching continue to work normally.
+> 
+
+
 
 ### Requirements 
 
