@@ -59,13 +59,8 @@ The goal isn't to build the most powerful surveillance system possible.
 
 **The goal is to demonstrate what is already possible.**
 
-
-![AI Status](https://img.shields.io/badge/AI%20OVERVIEW-DISABLED-red?style=for-the-badge)
-
-> [!WARNING]
-> **AI Overview is currently disabled.**
-> Face detection, recognition, profiling, and watchlist matching continue to work normally.
-> 
+## AI responses
+<img src="images/11.png" alt="Live CCTV" width="200">
 
 ## UI Preview
 
