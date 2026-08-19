@@ -63,6 +63,7 @@ The goal isn't to build the most powerful surveillance system possible.
 
 moondream:latest
 <img src="images/moondream.png" alt="moondream latest" width="200">
+```
 ==============================
        Ollama Statistics
 ==============================
@@ -72,7 +73,7 @@ Total tokens  : 851
 Generation    : 0.16s
 Total time    : 1.81s
 Speed         : 64.23 tokens/s
-
+```
 ---
 
 ## UI Preview
