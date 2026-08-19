@@ -62,6 +62,7 @@ The goal isn't to build the most powerful surveillance system possible.
 ## LLM Overview
 
 moondream:latest
+
 <img src="images/moondream.png" alt="moondream latest" width="200">
 ```
 ==============================
