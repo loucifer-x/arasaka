@@ -62,7 +62,7 @@ The goal isn't to build the most powerful surveillance system possible.
 ## LLM Overview
 To keep the results consistent I shall be using the same image over and over to test the responses.
 
-```
+---
 
 ### moondream:latest
 
