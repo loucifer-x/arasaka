@@ -1,4 +1,4 @@
-# Arasaka
+# Arasaka - Arasaka all the way to the top
 
 > **Here is what the technology enables on a 10-year-old laptop.**
 
