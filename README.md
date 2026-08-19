@@ -82,6 +82,24 @@ Speed         : 64.23 tokens/s
 
 ---
 
+### mogemma3:4b
+
+<img src="images/22.png" alt="gemma3:4b" width="200">
+
+```
+==============================
+       Ollama Statistics
+==============================
+Prompt tokens : 369
+Output tokens : 296
+Total tokens  : 665
+Generation    : 33.05s
+Total time    : 49.03s
+Speed         : 8.96 tokens/s
+```
+
+---
+
 ## UI Preview
 
 ### Live CCTV
