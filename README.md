@@ -100,6 +100,25 @@ Speed         : 8.96 tokens/s
 
 ---
 
+### qwen3-vl:2b
+
+<img src="images/11.png" alt="qwen3-vl 2b" width="200">
+
+```
+==============================
+       Ollama Statistics
+==============================
+Prompt tokens : 177
+Output tokens : 554
+Total tokens  : 731
+Generation    : 13.62s
+Total time    : 14.85s
+Speed         : 40.67 tokens/s
+==============================
+```
+
+---
+
 ## UI Preview
 
 ### Live CCTV
