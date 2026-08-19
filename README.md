@@ -59,8 +59,21 @@ The goal isn't to build the most powerful surveillance system possible.
 
 **The goal is to demonstrate what is already possible.**
 
-## AI responses
-<img src="images/11.png" alt="Live CCTV" width="200">
+## LLM Overview
+
+moondream:latest
+<img src="images/moondream.png" alt="moondream:latest" width="200">
+==============================
+       Ollama Statistics
+==============================
+Prompt tokens : 841
+Output tokens : 10
+Total tokens  : 851
+Generation    : 0.16s
+Total time    : 1.81s
+Speed         : 64.23 tokens/s
+
+---
 
 ## UI Preview
 
