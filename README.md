@@ -60,6 +60,7 @@ The goal isn't to build the most powerful surveillance system possible.
 **The goal is to demonstrate what is already possible.**
 
 ## LLM Overview
+To keep the results consistent I shall be using the same image over and over to test the responses.
 
 moondream:latest
 
